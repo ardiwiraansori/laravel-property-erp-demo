@@ -16,12 +16,12 @@ This repository is a sanitized demo version for portfolio purposes.
 - Accounting / Journal
 - Cashier
 - Cash Management
-- Kartu Pembantu
+- Subsidiary Ledger
 - Tax Module
 - KPR Disbursement Tracking
 - Bank Progress Tracking
 - HR Module
-- SPK Pembangunan
+- Construction Work Order
 - Contractor Disbursement
 - Property Development Progress
 
@@ -32,7 +32,6 @@ This repository is a sanitized demo version for portfolio purposes.
 - JavaScript
 - MySQL
 - Bootstrap / Tailwind
-- REST API
 
 ## Demo Focus
 
