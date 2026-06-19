@@ -18,7 +18,7 @@
 @if (\Request::is('rtl'))
   <html dir="rtl" lang="ar">
 @else
-  <html lang="en" >
+  <html lang="en">
 @endif
 
 <head>
@@ -31,10 +31,8 @@
 
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-  <title>
-    Soft UI Dashboard by Creative Tim
-  </title>
-  <!--     Fonts and icons     -->
+  <title>Laravel Property ERP Demo</title>
+  <!-- Fonts and icons -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <!-- Nucleo Icons -->
   <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
@@ -46,7 +44,7 @@
   <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
 </head>
 
-<body class="g-sidenav-show  bg-gray-100 {{ (\Request::is('rtl') ? 'rtl' : (Request::is('virtual-reality') ? 'virtual-reality' : '')) }} ">
+<body class="g-sidenav-show bg-gray-100 {{ (\Request::is('rtl') ? 'rtl' : (Request::is('virtual-reality') ? 'virtual-reality' : '')) }}">
   @auth
     @yield('auth')
   @endauth
@@ -59,10 +57,11 @@
         x-init="setTimeout(() => show = false, 4000)"
         x-show="show"
         class="position-fixed bg-success rounded right-3 text-sm py-2 px-4">
-      <p class="m-0">{{ session('success')}}</p>
+      <p class="m-0">{{ session('success') }}</p>
     </div>
   @endif
-    <!--   Core JS Files   -->
+
+  <!-- Core JS Files -->
   <script src="../assets/js/core/popper.min.js"></script>
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
@@ -74,9 +73,7 @@
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
-      var options = {
-        damping: '0.5'
-      }
+      var options = { damping: '0.5' };
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
