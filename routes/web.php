@@ -6,11 +6,24 @@ use App\Http\Controllers\InfoUserController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'home']);
     Route::view('/dashboard', 'dashboard')->name('dashboard');
+
+    Route::resource('/master-data/units', UnitController::class)
+        ->parameters(['units' => 'unit'])
+        ->names([
+            'index' => 'erp.units',
+            'create' => 'erp.units.create',
+            'store' => 'erp.units.store',
+            'show' => 'erp.units.show',
+            'edit' => 'erp.units.edit',
+            'update' => 'erp.units.update',
+            'destroy' => 'erp.units.destroy',
+        ]);
 
     $erpPages = [
         [
@@ -39,19 +52,7 @@ Route::middleware('auth')->group(function () {
                 ['Cluster Sakura', 'Sakura Hills', 'Available', '22 units'],
             ],
         ],
-        [
-            'uri' => '/master-data/units',
-            'name' => 'erp.units',
-            'module' => 'Master Data',
-            'title' => 'Units',
-            'description' => 'Master unit properti, harga, status booking, dan status serah terima.',
-            'stats' => ['Total Units' => '128', 'Booked' => '36', 'Available' => '47'],
-            'rows' => [
-                ['A-012', 'Type 45/90', 'Booked', 'Rp 685 jt'],
-                ['B-0807', 'Type 36/72', 'Occupied', 'Rp 540 jt'],
-                ['C-0210', 'Type 60/120', 'Available', 'Rp 920 jt'],
-            ],
-        ],
+       
         [
             'uri' => '/master-data/customers',
             'name' => 'erp.customers',
