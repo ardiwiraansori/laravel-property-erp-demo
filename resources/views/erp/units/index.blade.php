@@ -13,9 +13,9 @@
                                 Master unit properti, harga, status booking, dan status serah terima.
                             </p>
                         </div>
-                        <a href="{{ route('erp.units.create') }}" class="btn bg-gradient-primary mb-0">
-                            <i class="fas fa-plus me-1"></i> Add Unit
-                        </a>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUnitModal">
+                            Add Unit
+                        </button>
                     </div>
                 </div>
             </div>
@@ -200,4 +200,57 @@
             </div>
         </div>
     </div>
+
+    {{-- Modal Add Unit --}}
+    <div class="modal fade" id="addUnitModal" tabindex="-1" aria-labelledby="addUnitModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <form action="{{ route('erp.units.store') }}" method="POST" class="modal-content">
+                @csrf
+
+                <input type="hidden" name="_form_context" value="create-unit">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addUnitModalLabel">Add Unit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    @include('erp.units._form', [
+                        'unit' => new \App\Models\Unit([
+                            'status' => 'available',
+                            'bedrooms' => 2,
+                            'bathrooms' => 1,
+                        ]),
+                        'statuses' => $statuses,
+                    ])
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary mb-0" data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+
+                    <button type="submit" class="btn bg-gradient-primary mb-0">
+                        Save Unit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 @endsection
+
+{{-- Scripts --}}
+@push('scripts')
+    @if ($errors->any() && old('_form_context') === 'create-unit')
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const addUnitModalElement = document.getElementById('addUnitModal');
+
+                if (addUnitModalElement) {
+                    const addUnitModal = new bootstrap.Modal(addUnitModalElement);
+                    addUnitModal.show();
+                }
+            });
+        </script>
+    @endif
+@endpush

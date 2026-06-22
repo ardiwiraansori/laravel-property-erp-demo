@@ -11,10 +11,19 @@
                 </div>
 
                 <div class="card-body">
-                    @include('erp.units._form', [
-                        'action' => route('erp.units.store'),
-                        'buttonLabel' => 'Save Unit',
-                    ])
+                    <form action="{{ route('erp.units.store') }}" method="POST">
+                        @csrf
+
+                        @include('erp.units._form', [
+                            'unit' => $unit,
+                            'statuses' => $statuses,
+                        ])
+
+                        <div class="d-flex justify-content-end gap-2">
+                            <a href="{{ route('erp.units') }}" class="btn btn-outline-secondary mb-0">Cancel</a>
+                            <button type="submit" class="btn bg-gradient-primary mb-0">Save Unit</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

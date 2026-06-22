@@ -39,7 +39,7 @@ class UnitController extends Controller
         return view('erp.units.index', [
             'units' => $units,
             'summary' => $summary,
-            'statuses' => $this->statuses(),
+            'statuses' => $this->statusesUnit(),
         ]);
     }
 
@@ -51,7 +51,7 @@ class UnitController extends Controller
                 'bedrooms' => 2,
                 'bathrooms' => 1,
             ]),
-            'statuses' => $this->statuses(),
+            'statuses' => $this->statusesUnit(),
         ]);
     }
 
@@ -73,7 +73,7 @@ class UnitController extends Controller
     {
         return view('erp.units.edit', [
             'unit' => $unit,
-            'statuses' => $this->statuses(),
+            'statuses' => $this->statusesUnit(),
         ]);
     }
 
@@ -114,12 +114,12 @@ class UnitController extends Controller
             'bathrooms' => ['required', 'integer', 'min:0', 'max:20'],
             'price' => ['required', 'numeric', 'min:0'],
             'booking_fee' => ['nullable', 'numeric', 'min:0'],
-            'status' => ['required', Rule::in(array_keys($this->statuses()))],
+            'status' => ['required', Rule::in(array_keys($this->statusesUnit()))],
             'notes' => ['nullable', 'string'],
         ]);
     }
 
-    private function statuses(): array
+    private function statusesUnit(): array
     {
         return [
             'available' => 'Available',

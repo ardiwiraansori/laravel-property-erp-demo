@@ -6,16 +6,25 @@
             <div class="card">
                 <div class="card-header pb-0">
                     <p class="text-sm text-info text-gradient text-uppercase font-weight-bold mb-2">Master Data</p>
-                    <h5 class="mb-0">Edit Unit {{ $unit->unit_number }}</h5>
-                    <p class="text-sm text-secondary mb-0">Update data harga, spesifikasi, dan status unit.</p>
+                    <h5 class="mb-0">Edit Unit</h5>
+                    <p class="text-sm text-secondary mb-0">Update data unit properti.</p>
                 </div>
 
                 <div class="card-body">
-                    @include('erp.units._form', [
-                        'action' => route('erp.units.update', $unit),
-                        'method' => 'PUT',
-                        'buttonLabel' => 'Update Unit',
-                    ])
+                    <form action="{{ route('erp.units.update', $unit) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+
+                        @include('erp.units._form', [
+                            'unit' => $unit,
+                            'statuses' => $statuses,
+                        ])
+
+                        <div class="d-flex justify-content-end gap-2">
+                            <a href="{{ route('erp.units') }}" class="btn btn-outline-secondary mb-0">Cancel</a>
+                            <button type="submit" class="btn bg-gradient-primary mb-0">Update Unit</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
